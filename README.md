@@ -79,10 +79,10 @@ The provided Linux client connects with credentials and dumps the payload to `st
 ```sh
 TCPCam_client IP PORT PIN CMD [FNAME]
 ```
-- IP --   IP address of server
-- PORT --  TCP port as set in menuconfig
-- PIN -- pin/password as set in menuconfig
-- CMD -- number of messages to wait for. Put 0 for indefinite transmission.
+- IP --  server's IP address (menuconfig)
+- PORT -- server's port (menuconfig)
+- PIN -- pin/password (menuconfig)
+- CMD -- number of messages to wait for. Put `0` for non-stop transmission.
 - FNAME (*optional*) -- direct payload to a file instead of `stdout`. Multiple frames are appended.
 
 ## TODO
