@@ -39,30 +39,31 @@ The menuconfig's "Image and Streaming settings > Build type" section provides se
 - "Build with a JPEG test binary" repeatedly transmits a sample image file
 
 ## Client
-The client will require an application to process received images (save them as file(s), stream over HTTP,...). 
-Any client could be used, that is able to send commands and handle incoming packet data (header and payload).
+is left up to the client
+A client is free to process the received frames any way it sees fit. Saving them as files or stream over HTTP are among the most likely use cases.
+Any client could be used, able to conform to the protocol (sending commands and handling incoming header and payload packet data).
 
-
-A simple (and optional) Linux client is provided with this project for testing purposes. It is a vanilla implementation using BSD socket library. The GNU Make system *might* be required to build it. 
+A simple (and optional) Linux client is provided with this project for testing purposes. It is a vanilla client implementation using BSD socket library. The GNU Make system *might* be necessary to build it.
 ```sh
 cd client; make
 ```
 
 ## Usage
-The server connects to the WiFi access point with provided credentials  listens to connections on the specified port. All communications use the same port. Multiple simultaneous connections (for example from different devices) is possible.
+The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. All communications use the same port.
 
 A client should first establish the connection with the server on specified IP address and port (see `menuconfig`s "TCP server settings").
 After a successful connection, please send your request.
 
-The request shall consist of PIN followed by COMMAND sent separately in this order. The commands will not be confirmed by server.
+The server request shall consist of PIN followed by COMMAND sent separately in this order. The commands will not be confirmed by server.
 If the request is successful, a stream will start arriving on the same port.
 
 The commands are
-1. PIN code as specified in `menuconfig`s "TCP server settings > TCP pin/password"
+1. PIN code as specified in `menuconfig` "TCP server settings > TCP pin/password"
 2. CODE, the app supports numeric code values:
    - positive number `N` will request exactly N frames
    - zero or negative number will request a non-stop stream
   
+It is possible to connect multiple clients simultaneously. Each connection will be served in turn in LIFO order.
 ## Client
 A simple Linux client using BSD socket library implementation is provided for testing purposes.
 This client connects with credentials and dumps the payload to `stdout` or to a file.
