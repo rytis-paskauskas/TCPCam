@@ -48,7 +48,7 @@ The other two build types can be used for testing purposes:
 - *"Build with a JPEG test binary"* repeatedly transmits a sample image file
 
 ## Client
-Saving received images as files or passing them to a HTTP streaming server are two probable use types by a hypothetical client.
+Saving received images as files or passing them to a HTTP streaming server are some of the more likely uses by a hypothetical client.
 
 Any suitable client, adaptable to TCPCam's simple [server request protocol](#server-request-protocol), could be used.
 
