@@ -4,7 +4,7 @@ A fully functional IoT application implementing multiple concurrent client conne
 A simple Linux client (in C) is provided for testing purposes.
 
 ## Hardware requirements
-- ESP32-CAM board. It is possible to build for ESP32 boards without camera support using one of two test builds (see `menuconfig`s Image and Streaming settings > Build type")
+- ESP32-CAM board. It is possible to build for ESP32 boards without camera support using one of two provided test builds
 - Wifi connection and (optionally) Internet
 - 5V or 3.3V power source (5V, if applicable for a board, works better with WiFi).
 
