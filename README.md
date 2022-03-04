@@ -57,7 +57,7 @@ cd client; make
 ```
 
 ## Usage
-The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. The WiFi connection is hard-coded using menuconfig.
+The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. The AP is hard-coded using menuconfig.
 
 A client should first establish the connection with the server, then initiate the request, then handle the data.
 
@@ -68,7 +68,7 @@ If the initiation request is successful, a stream will start arriving on the sam
 
 The commands are
 1. PIN code as specified in `menuconfig` "TCP server settings > TCP pin/password"
-2. CODE, the app supports numeric code values:
+2. CMD, TCPCam currently supports numeric command values:
    - positive number `N` will request exactly N frames
    - zero or negative number will request a non-stop stream
   
@@ -77,14 +77,14 @@ It is possible to connect multiple clients simultaneously. Each connection will 
 ### Using `TCPCam_client`
 The provided Linux client connects with credentials and dumps the payload to `stdout` or to a file. Usage:
 ```sh
-TCPCam_client IP PORT PIN REP [FNAME]
+TCPCam_client IP PORT PIN CMD [FNAME]
 ```
 Here
-- IP:   IP address of server
-- PORT:  TCP port as set in menuconfig
-- PIN: pin/password as set in menuconfig
-- REP: number of messages to wait for. Put 0 for indefinite transmission.
-- FNAME: *optional* If specified the payload will be directed to a file instead of `stdout`. In case of multiple frames, they will be appended.
+- IP --   IP address of server
+- PORT --  TCP port as set in menuconfig
+- PIN -- pin/password as set in menuconfig
+- CMD -- number of messages to wait for. Put 0 for indefinite transmission.
+- FNAME -- *optional* If specified the payload will be directed to a file instead of `stdout`. In case of multiple frames, they will be appended.
 
 ## TODO
 - [ ] better file handling in `TCPCam_client` (multiple files)
