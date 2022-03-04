@@ -11,8 +11,8 @@ A simple Linux client (in C) is provided for testing purposes.
 
 ## Software prerequisited
 This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
-See  [here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF")
-for details about the IDE.
+See these [installation instructions](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF")
+for more details about the IDE.
 
 ## Configure and build TCPCam
 
