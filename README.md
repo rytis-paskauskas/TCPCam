@@ -74,7 +74,7 @@ The commands are
   
 It is possible to connect multiple clients simultaneously. Each connection will be served in turn in LIFO order.
 
-### Client
+### Using `TCPCam_client`
 The provided Linux client connects with credentials and dumps the payload to `stdout` or to a file. Usage:
 ```sh
 TCPCam_client IP PORT PIN REP [FNAME]
