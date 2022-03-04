@@ -35,15 +35,19 @@ The build with 'esp32-camera' module should be chosen for 'production' builds. T
 - `Hello World` repeatedly transmits a `Hello World` string
 - `Build with a JPEG test binary` repeatedly transmits a sample image file
 
-## Build the client
-To process the images (save as files, stream over HTTP, etc.) on the client side, a dedicated app will be required.
+## Client
+The client will require an application to process received images (save them as file(s), stream over HTTP,...). 
+Any client could be used, that is able to send commands and handle incoming packet data (header and payload).
 
-A simple (and optional) BSD socket library Linux client is provided with this project. It is built using the GNU Make system.
+
+A simple (and optional) Linux client is provided with this project for testing purposes. It is implemented using BSD socket library and is built using the GNU Make system.
 ```sh
 cd client; make
 ```
 
 ## Usage
+The server connects to the WiFi access point with provided credentials  listens to connections on the specified port. All communications use the same port. Multiple simultaneous connections (for example from different devices) is possible.
+
 A client should first establish the connection with the server on specified IP address and port (see `menuconfig`s "TCP server settings").
 After a successful connection, please send your request.
 
