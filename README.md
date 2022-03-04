@@ -4,7 +4,8 @@ A fully functional IoT application implementing multiple concurrent client conne
 A simple Linux client (in C) is provided for testing purposes.
 
 ## Hardware requirements
-- ESP32-CAM board. It is possible to build for ESP32 boards without camera support using one of two provided test builds
+- ESP32-CAM board (with camera sensor). 
+  It is possible to build for other ESP32 boards without camera support.
 - Wifi connection and (optionally) Internet
 - 5V or 3.3V power source (5V, if applicable for a board, works better with WiFi).
 
@@ -24,14 +25,15 @@ git clone https://github.com/rytis-paskauskas/TCPCam
 ```sh
 idf.py menuconfig
 ```
-See the `TCPCam Configuration` menu.
+Customize TCPCam-related parameters in the "TCPCam Configuration" menu.
 
 ### Build and flash
-The buid of this app follows the [standard ESP-IDF workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow").
+This app follows the [standard ESP-IDF workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow").
 
 ### Build types 
-The `menuconfig`s "Image and Streaming settings > Build type" provides several build options.
-The build with 'esp32-camera' module should be chosen for 'production' builds. The other two build types can be used for testing purposes:
+It is possible to build for ESP32 without camera support using the provided test builds. Also, it should be possible to extend this app to other camera sensors by replacing `esp32cam.c` and providing an appropriate driver and a custom frame generator (not tested).
+
+The `menuconfig`s "Image and Streaming settings > Build type" provides several build options. The build with 'esp32-camera' module should be chosen for 'production' builds. The other two build types can be used for testing purposes:
 - `Hello World` repeatedly transmits a `Hello World` string
 - `Build with a JPEG test binary` repeatedly transmits a sample image file
 
