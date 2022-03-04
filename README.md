@@ -48,20 +48,22 @@ The other two build types can be used for testing purposes:
 - *"Build with a JPEG test binary"* repeatedly transmits a sample image file
 
 ## Client
-Saving received images as files or passing them to a HTTP streaming server are some of the more likely uses by a hypothetical client.
+Saving received images as files or passing them to a HTTP streaming server are two most likely uses of TCPCam.
 
-Any suitable client, adaptable to TCPCam's simple [server request protocol](#server-request-protocol), could be used.
+Any suitable client, adaptable to TCPCam's simple [server request protocol](#server-request-protocol), could be used for that.
 
 A simple (and optional) Linux client is provided with this project for testing purposes. 
-It is a client vanilla implementation using BSD socket library. The GNU Make system *might* be necessary to build it.
+It is a vanilla implementation using BSD socket library. The GNU Make system *might* be necessary to build it.
 ```sh
 cd client; make
 ```
 
 ## Usage
-The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. All communications are unencrypted and use the same port.
+The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. The WiFi connection is hard-coded using menuconfig.
 
 A client should first establish the connection with the server, then initiate the request, then handle the data.
+
+All communications are unencrypted and use the same port.
 ### Server request protocol
 A server request shall consist of PIN followed by COMMAND sent separately in this order. These two commands are required to initiate the connection. Neither command will be confirmed by server.
 If the initiation request is successful, a stream will start arriving on the same port.
