@@ -33,9 +33,9 @@ This app follows the [standard ESP-IDF workflow](https://docs.espressif.com/proj
 ### Build types 
 It is possible to build for ESP32 without camera support using the provided test builds. Also, it should be possible to extend this app to other camera sensors by replacing `esp32cam.c` and providing an appropriate driver and a custom frame generator (not tested).
 
-The `menuconfig`s "Image and Streaming settings > Build type" provides several build options. The build with 'esp32-camera' module should be chosen for 'production' builds. The other two build types can be used for testing purposes:
-- `Hello World` repeatedly transmits a `Hello World` string
-- `Build with a JPEG test binary` repeatedly transmits a sample image file
+The `menuconfig`s "Image and Streaming settings > Build type" provides several build options. The "Build with ESP32-CAMERA sensor" option should be chosen for 'production' builds. The other two build types can be used for testing purposes:
+- "Hello World" repeatedly transmits a string
+- "Build with a JPEG test binary" repeatedly transmits a sample image file
 
 ## Client
 The client will require an application to process received images (save them as file(s), stream over HTTP,...). 
