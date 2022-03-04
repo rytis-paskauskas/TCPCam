@@ -25,16 +25,15 @@ git clone https://github.com/rytis-paskauskas/TCPCam
 idf.py menuconfig
 ```
 See the `TCPCam Configuration` menu.
-We have two modes for testing the TCP server configurable from the `Image and Streaming settings > Build type` menu:
-- `Hello World` repeatedly transmits the `Hello World` string
-- `Build with a JPEG test binary` repeatedly transmits a sample image
 
 ### Build and flash
 The buid of this app follows the [standard ESP-IDF workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow").
 
 ### Build types 
 The `menuconfig`s "Image and Streaming settings > Build type" provides several build options.
-The build using the 'esp32-camera' module should be chosen for 'production' builds. The other two build types can be used for testing purposes.
+The build with 'esp32-camera' module should be chosen for 'production' builds. The other two build types can be used for testing purposes:
+- `Hello World` repeatedly transmits a `Hello World` string
+- `Build with a JPEG test binary` repeatedly transmits a sample image file
 
 ## Build the client
 To process the images (save as files, stream over HTTP, etc.) on the client side, a dedicated app will be required.
