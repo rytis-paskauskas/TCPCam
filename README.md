@@ -26,7 +26,7 @@ git clone https://github.com/rytis-paskauskas/TCPCam
 ```sh
 idf.py menuconfig
 ```
-Customize TCPCam-related parameters in the "TCPCam Configuration" menu.
+Customize TCPCam-related parameters in the "TCPCam Configuration" section.
 
 ### Build and flash
 This app follows the [standard ESP-IDF workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow").
@@ -34,7 +34,7 @@ This app follows the [standard ESP-IDF workflow](https://docs.espressif.com/proj
 ### Build types 
 It is possible to build for ESP32 without camera support using the provided test builds. Also, it should be possible to extend this app to other camera sensors by replacing `esp32cam.c` and providing an appropriate driver and a custom frame generator (not tested).
 
-The `menuconfig`s "Image and Streaming settings > Build type" provides several build options. The "Build with ESP32-CAMERA sensor" option should be chosen for 'production' builds. The other two build types can be used for testing purposes:
+The menuconfig's "Image and Streaming settings > Build type" section provides several build options. The "Build with ESP32-CAMERA sensor" option should be chosen for 'production' builds. The other two build types can be used for testing purposes:
 - "Hello World" repeatedly transmits a string
 - "Build with a JPEG test binary" repeatedly transmits a sample image file
 
@@ -43,7 +43,7 @@ The client will require an application to process received images (save them as 
 Any client could be used, that is able to send commands and handle incoming packet data (header and payload).
 
 
-A simple (and optional) Linux client is provided with this project for testing purposes. It is implemented using BSD socket library and is built using the GNU Make system.
+A simple (and optional) Linux client is provided with this project for testing purposes. It is a vanilla implementation using BSD socket library. The GNU Make system *might* be required to build it. 
 ```sh
 cd client; make
 ```
