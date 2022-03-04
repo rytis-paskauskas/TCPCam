@@ -61,8 +61,7 @@ cd client; make
 ## Usage
 The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. All communications are unencrypted and use the same port.
 
-A client should first establish the connection with the server on specified IP address and port (see `menuconfig` and "TCP server settings"). After a successful connection, it is possible to send requests.
-
+A client should first establish the connection with the server, then initiate the request, then handle the data.
 ### Server request protocol
 A server request shall consist of PIN followed by COMMAND sent separately in this order. These two commands are required to initiate the connection. Neither command will be confirmed by server.
 If the initiation request is successful, a stream will start arriving on the same port.
