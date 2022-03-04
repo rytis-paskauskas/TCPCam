@@ -10,8 +10,9 @@ A simple Linux client (in C) is provided for testing purposes.
 - 5V or 3.3V power source (5V, if applicable for a board, works better with WiFi).
 
 ## Software prerequisited
-This app required the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
-The roadmap for the IDE installation and configuration is described [here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF").
+This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
+See  [here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF")
+for details about the IDE.
 
 ## Configure and build TCPCam
 
