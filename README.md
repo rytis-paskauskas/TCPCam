@@ -1,10 +1,10 @@
 # TCPCam: remote control your camera
 
-A request-response IoT server implementing multiple concurrent client connections, image streaming and image capture on request over TCP.
+A request-response IoT server, implementing multiple concurrent client connections, image streaming and on-demand image capture requests over TCP.
 A simple Linux client (in C) is provided for testing purposes.
 
 ## Hardware requirements
-- ESP32-CAM board (with camera sensor). 
+- ESP32-CAM board. 
   It is possible to build for other ESP32 boards without camera support.
 - Wifi connection and (optionally) Internet
 - 5V or 3.3V power source (5V, if applicable for a board, works better with WiFi).
@@ -13,7 +13,7 @@ A simple Linux client (in C) is provided for testing purposes.
 This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
 See [installation instructions](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF") for more details about IDE.
 
-GCC or similar and GNU Make (or similar) for the included client.
+GCC or similar, and GNU Make or similar for the included client.
 
 ## Configure and build TCPCam
 
@@ -23,28 +23,36 @@ Clone (or fork) this repository
 git clone https://github.com/rytis-paskauskas/TCPCam
 ```
 
-### Parameter configuration
+### Configuration
 ```sh
 idf.py menuconfig
 ```
 Customize TCPCam-related parameters in the "TCPCam Configuration" section.
 
 ### Build and flash
-This app follows the [standard ESP-IDF workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow").
+This project for the server follows the [standard ESP-IDF build workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow"). 
+
+The client can be built using the included `Makefile` but it is simple enough to be built manually.
 
 ### Build types 
-It is possible to build for ESP32 without camera support using the provided test builds. Also, it should be possible to extend this app to other camera sensors by replacing `esp32cam.c` and providing an appropriate driver and a custom frame generator (not tested).
+It is possible to build for ESP32 without camera support using the provided test builds. 
 
-The menuconfig's "Image and Streaming settings > Build type" section provides several build options. The "Build with ESP32-CAMERA sensor" option should be chosen for 'production' builds. The other two build types can be used for testing purposes:
-- "Hello World" repeatedly transmits a string
-- "Build with a JPEG test binary" repeatedly transmits a sample image file
+Also, it should be possible to extend this app to other camera sensors by replacing `esp32cam.c` with an appropriate driver and providing a custom frame generator (this has not been tested).
+
+The menuconfig's *"Image and Streaming settings > Build type"* section provides several build options. 
+
+The *"Build with ESP32-CAMERA sensor"* option should be chosen for 'production' builds. 
+
+The other two build types can be used for testing purposes:
+- *"Hello World"* repeatedly transmits a string
+- *"Build with a JPEG test binary"* repeatedly transmits a sample image file
 
 ## Client
-A client is free to process the received frames any way it sees fit. Saving as files, or passing them to a HTTP streaming server are the two most likely use cases.
-Any client could be used, which has the flexibility to conform to the TCPCam's protocol (described below in **Usage**).
+Saving the received images as files, or passing them to a HTTP streaming server are two probable use types by a hypothetical client.
+Any client, able to conform to the TCPCam's simple protocol (described in #server-request-protocol, below) could be used.
 
-
-A simple (and optional) Linux client is provided with this project for testing purposes. It is a vanilla client implementation using BSD socket library. The GNU Make system *might* be necessary to build it.
+A simple (and optional) Linux client is provided with this project for testing purposes. 
+It is a client vanilla implementation using BSD socket library. The GNU Make system *might* be necessary to build it.
 ```sh
 cd client; make
 ```
@@ -83,10 +91,8 @@ Here
 - [ ] make a python client
 
 ## FAQ
-
 ## Authors
 * [Rytis Paškauskas](https://github.com/rytis-paskauskas)
-
 ## License
 See the LICENCE file.
 
