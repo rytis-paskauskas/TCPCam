@@ -1,6 +1,6 @@
 # TCPCam: remote control your camera
 
-A fully functional IoT application implementing multiple concurrent client connections, image streaming and image capture on request over TCP.
+A fully functional IoT request-response server implementing multiple concurrent client connections, image streaming and image capture on request over TCP.
 A simple Linux client (in C) is provided for testing purposes.
 
 ## Hardware requirements
@@ -9,10 +9,11 @@ A simple Linux client (in C) is provided for testing purposes.
 - Wifi connection and (optionally) Internet
 - 5V or 3.3V power source (5V, if applicable for a board, works better with WiFi).
 
-## Software prerequisited
+## Software prerequisites
 This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
-See these [installation instructions](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF")
-for more details about IDE.
+See [installation instructions](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF") for more details about IDE.
+
+GCC or similar and GNU Make (or similar) for the included client.
 
 ## Configure and build TCPCam
 
@@ -49,13 +50,13 @@ cd client; make
 ```
 
 ## Usage
-The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. All communications use the same port.
+The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. All communications are unencrypted and use the same port.
 
-A client should first establish the connection with the server on specified IP address and port (see `menuconfig` and "TCP server settings").
-After a successful connection, it is possible to send a request.
+A client should first establish the connection with the server on specified IP address and port (see `menuconfig` and "TCP server settings"). After a successful connection, it is possible to send requests.
 
-The server request shall consist of PIN followed by COMMAND sent separately in this order. The commands will not be confirmed by server.
-If the request is successful, a stream will start arriving on the same port.
+### Server request protocol
+A server request shall consist of PIN followed by COMMAND sent separately in this order. These two commands are required to initiate the connection. Neither command will be confirmed by server.
+If the initiation request is successful, a stream will start arriving on the same port.
 
 The commands are
 1. PIN code as specified in `menuconfig` "TCP server settings > TCP pin/password"
@@ -64,10 +65,9 @@ The commands are
    - zero or negative number will request a non-stop stream
   
 It is possible to connect multiple clients simultaneously. Each connection will be served in turn in LIFO order.
-## Client
-The provided Linux client can be used for testing purposes. 
-It connects with credentials and dumps the payload to `stdout` or to a file.
-Usage:
+
+### Client
+The provided Linux client connects with credentials and dumps the payload to `stdout` or to a file. Usage:
 ```sh
 TCPCam_client IP PORT PIN REP [FNAME]
 ```
@@ -79,8 +79,8 @@ Here
 - FNAME: *optional* If specified the payload will be directed to a file instead of `stdout`. In case of multiple frames, they will be appended.
 
 ## TODO
-- [] better file handling in `TCPCam_client` (multiple files)
-- [] make a python client
+- [ ] better file handling in `TCPCam_client` (multiple files)
+- [ ] make a python client
 
 ## FAQ
 
