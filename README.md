@@ -1,6 +1,6 @@
 # TCPCam: remote control your camera
 
-A fully functional IoT request-response server implementing multiple concurrent client connections, image streaming and image capture on request over TCP.
+A request-response IoT server implementing multiple concurrent client connections, image streaming and image capture on request over TCP.
 A simple Linux client (in C) is provided for testing purposes.
 
 ## Hardware requirements
