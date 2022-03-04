@@ -1,0 +1,106 @@
+menu "TCPCam Configuration"
+    menu "WiFi connection settings"
+        config WIFI_SSID
+            string "WiFi SSID"
+            default "ssid"
+        config WIFI_PASSWORD
+            string "WiFi Password"
+            default "password"
+    endmenu
+    
+    menu "TCP server settings"
+        config TCP_PORT
+            int "TCP Port"
+            range 0 65535
+            default 3333
+            help
+                Local port the server will listen on.
+        config TCP_PASSWORD
+	    int "TCP pin/password"
+	    default 1235
+	    help
+	        Authorization code that will be transmitted in clear. Any alphanumeric symbols are OK, but newlines are not.
+        config PAYLOAD_QUEUE_MAX
+	    int "Packet queue size"
+	    default 3
+	    range 0 10
+	    help
+	        Use a small value or increase task size. Having a value greater than 1 is only relevant when the transmission is slow (and/or) there are many waiting sockets, with respect to frame acquisition rate.
+        config KEEPALIVE_IDLE
+            int "TCP keep-alive idle time(s)"
+            default 5
+            help
+                Keep-alive idle time. In idle time without receiving any data from peer, will send keep-alive probe packet
+    
+        config KEEPALIVE_INTERVAL
+            int "TCP keep-alive interval time(s)"
+            default 5
+            help
+                Keep-alive probe packet interval time.
+    
+        config KEEPALIVE_COUNT
+            int "TCP keep-alive packet retry send counts"
+            default 3
+            help
+                Keep-alive probe packet retry count.
+        endmenu
+
+    menu "Image and Streaming settings"
+        choice
+            bool "Build type"
+            default BUILD_TEST_HELLO
+            config BUILD_TEST_HELLO
+                bool "Hello World string"
+            config BUILD_TEST_JPG
+                bool "Build with a JPEG test binary"
+            config BUILD_ESP32CAM
+                bool "Build with ESP32-CAMERA sensor"
+        endchoice
+	
+        if BUILD_ESP32CAM
+            choice
+                bool "Camera sensor's dimensions"
+                default CAMERA_SENSOR_2MP
+                config CAMERA_SENSOR_2MP
+                    bool "2 megapixels"
+                config CAMERA_SENSOR_3MP
+                    bool "3 megapixels"
+                config CAMERA_SENSOR_5MP
+                    bool "5 megapixels"
+            endchoice
+
+            choice
+                bool "Camera image resolution"
+                default CAMERA_IMGRES_HD
+                if CAMERA_SENSOR_2MP
+                    config CAMERA_IMGRES_UXGA
+                        bool "1600x1200"
+                    config CAMERA_IMGRES_SXGA
+                        bool "1280x1024"
+                    config CAMERA_IMGRES_HD
+                        bool "1280x720"
+                    config CAMERA_IMGRES_XGA
+                        bool "1024x768"
+                    config CAMERA_IMGRES_SVGA
+                        bool "800x600"
+                    config CAMERA_IMGRES_VGA
+                        bool "640x480"
+		    config CAMERA_IMGRES_HVGA
+		        bool "480x320"
+		    config CAMERA_IMGRES_CIF
+		        bool "400x296"
+		    config CAMERA_IMGRES_QVGA
+		        bool "320x240"
+		    config CAMERA_IMGRES_240X240
+		        bool "240x240"
+                endif
+            endchoice
+        endif
+
+        config	STREAM_PAYLOAD_DELAY
+            int
+            prompt "Delay between image repetition in milliseconds"
+            default 2000
+    endmenu
+
+endmenu
