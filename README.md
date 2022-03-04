@@ -50,7 +50,7 @@ The other two build types can be used for testing purposes:
 ## Client
 Saving the received images as files, or passing them to a HTTP streaming server are two probable use types by a hypothetical client.
 
-Any suitable client, adaptable to TCPCam's simple protocol, described [below](#server-request-protocol, below), could be used.
+Any suitable client, adaptable to TCPCam's simple protocol, described [below](#server-request-protocol), could be used.
 
 A simple (and optional) Linux client is provided with this project for testing purposes. 
 It is a client vanilla implementation using BSD socket library. The GNU Make system *might* be necessary to build it.
