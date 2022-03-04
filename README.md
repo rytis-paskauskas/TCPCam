@@ -28,16 +28,8 @@ git clone https://github.com/rytis-paskauskas/TCPCam
 idf.py menuconfig
 ```
 Customize TCPCam-related parameters in the "TCPCam Configuration" section.
-
-### Build and flash
-This project for the server follows the [standard ESP-IDF build workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow"). 
-
-The client can be built using the included `Makefile` but it is simple enough to be built manually.
-
 ### Build types 
 It is possible to build for ESP32 without camera support using the provided test builds. 
-
-Also, it should be possible to extend this app to other camera sensors by replacing `esp32cam.c` with an appropriate driver and providing a custom frame generator (this has not been tested).
 
 The menuconfig's *"Image and Streaming settings > Build type"* section provides several build options. 
 
@@ -46,6 +38,12 @@ The *"Build with ESP32-CAMERA sensor"* option should be chosen for 'production' 
 The other two build types can be used for testing purposes:
 - *"Hello World"* repeatedly transmits a string
 - *"Build with a JPEG test binary"* repeatedly transmits a sample image file
+
+### Build and flash
+This project for the server follows the [standard ESP-IDF build workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow"). 
+
+The client can be built using the included `Makefile` but it is simple enough to be built manually.
+
 
 ## Client
 Saving received images as files or passing them to a HTTP streaming server are two most likely uses of TCPCam.
@@ -92,6 +90,7 @@ Here
 - [ ] better file handling in `TCPCam_client` (multiple files)
 - [ ] make a python client
 
+It should also be possible to extend this project to other camera sensors by replacing `esp32cam.c` with an appropriate driver and providing a custom frame generator (this has not been tested).
 ## FAQ
 ## Authors
 * [Rytis Paškauskas](https://github.com/rytis-paskauskas)
