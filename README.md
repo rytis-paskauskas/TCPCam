@@ -12,7 +12,7 @@ A simple Linux client (in C) is provided for testing purposes.
 ## Software prerequisited
 This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
 See these [installation instructions](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF")
-for more details about the IDE.
+for more details about IDE.
 
 ## Configure and build TCPCam
 
@@ -39,9 +39,9 @@ The menuconfig's "Image and Streaming settings > Build type" section provides se
 - "Build with a JPEG test binary" repeatedly transmits a sample image file
 
 ## Client
-is left up to the client
-A client is free to process the received frames any way it sees fit. Saving them as files or stream over HTTP are among the most likely use cases.
-Any client could be used, able to conform to the protocol (sending commands and handling incoming header and payload packet data).
+A client is free to process the received frames any way it sees fit. Saving as files, or passing them to a HTTP streaming server are the two most likely use cases.
+Any client could be used, which has the flexibility to conform to the TCPCam's protocol (described below in **Usage**).
+
 
 A simple (and optional) Linux client is provided with this project for testing purposes. It is a vanilla client implementation using BSD socket library. The GNU Make system *might* be necessary to build it.
 ```sh
@@ -51,8 +51,8 @@ cd client; make
 ## Usage
 The server connects to the WiFi AP with provided credentials and listens to incoming connections on the specified port. All communications use the same port.
 
-A client should first establish the connection with the server on specified IP address and port (see `menuconfig`s "TCP server settings").
-After a successful connection, please send your request.
+A client should first establish the connection with the server on specified IP address and port (see `menuconfig` and "TCP server settings").
+After a successful connection, it is possible to send a request.
 
 The server request shall consist of PIN followed by COMMAND sent separately in this order. The commands will not be confirmed by server.
 If the request is successful, a stream will start arriving on the same port.
@@ -65,8 +65,8 @@ The commands are
   
 It is possible to connect multiple clients simultaneously. Each connection will be served in turn in LIFO order.
 ## Client
-A simple Linux client using BSD socket library implementation is provided for testing purposes.
-This client connects with credentials and dumps the payload to `stdout` or to a file.
+The provided Linux client can be used for testing purposes. 
+It connects with credentials and dumps the payload to `stdout` or to a file.
 Usage:
 ```sh
 TCPCam_client IP PORT PIN REP [FNAME]
