@@ -8,9 +8,9 @@ A simple Linux client is provided for testing purposes.
 - 5V or 3.3V power source (5V, if applicable for a board, works better with WiFi).
 ## Software prerequisites
 This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
-See [installation instructions](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation-step-by-step "install and setup ESP IDF") for more details about IDE.
+See the [official tutorial](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation "install and setup ESP IDF") for installation options.
 
-GCC or similar, and GNU Make or similar, for the included client.
+GCC or similar, and GNU Make or similar, to build the included client.
 ## Configure and build TCPCam
 ### Getting the source code
 Clone (or fork) this repository
@@ -26,14 +26,12 @@ Customize TCPCam-related parameters in the "TCPCam Configuration" section.
 It is possible to build for ESP32 without camera support using the provided test builds.
 
 The menuconfig's *"Image and Streaming settings > Build type"* section provides several build options. 
-
 The *"Build with ESP32-CAMERA sensor"* option should be chosen for 'production' builds.
-
 The other two build types can be used for testing purposes:
 - *"Hello World"* repeatedly transmits a string
 - *"Build with a JPEG test binary"* repeatedly transmits a sample image file
 ### Build and flash
-This project for the server follows the [standard ESP-IDF build workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-6-connect-your-device "ESP IDF build workflow"). 
+This project for the server follows the [standard ESP-IDF build workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup.html#build-the-project "ESP IDF build workflow"). 
 
 The client can be built using the included `Makefile`. 
 The client has been tested on Linux only.
