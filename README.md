@@ -10,7 +10,7 @@ A simple Linux client is provided for testing purposes.
 This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
 See the [official tutorial](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation "install and setup ESP IDF") for installation options.
 
-GCC or similar, and GNU Make or similar, to build the included client.
+GCC or similar, and GNU Make or similar, are needed to build the included client.
 ## Configure and build TCPCam
 ### Getting the source code
 Clone (or fork) this repository
@@ -31,12 +31,12 @@ The other two build types can be used for testing purposes:
 - *"Hello World"* repeatedly transmits a string
 - *"Build with a JPEG test binary"* repeatedly transmits a sample image file
 ### Build and flash
-This project for the server follows the [standard ESP-IDF build workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup.html#build-the-project "ESP IDF build workflow"). 
+This project for the server follows the standard [ESP-IDF build workflow](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup.html#build-the-project "ESP IDF build workflow").
 
-The client can be built using the included `Makefile`. 
+The client can be built using the included non-portable `Makefile`. 
 The client has been tested on Linux only.
 ## Client
-Saving received images as files or passing them to a HTTP streaming server are two most likely uses of TCPCam server.
+Saving received images as files or passing them to a HTTP streaming server are the two most likely uses of TCPCam server.
 
 Any suitable client, adaptable to TCPCam's simple [server request protocol](#server-request-protocol), could be used for that.
 
@@ -52,6 +52,8 @@ The server connects to a WiFi AP with provided credentials and listens to incomi
 A client should first establish the connection with the server, then initiate the request, then handle the data.
 
 All communications are unencrypted and use the same port.
+
+The server accepts multiple client connections and serves each in turn in LIFO order.
 ### Server request protocol
 A server request shall consist of PIN followed by COMMAND sent separately in this order. These two commands are required to initiate the connection. Neither command will be confirmed by server.
 If the initiation request is successful, a stream will start arriving on the same port.
@@ -61,8 +63,6 @@ Description of initiation commands:
 2. CMD, TCPCam currently supports numeric command values:
    - a positive number N>0 will request exactly N frames
    - a zero or a negative number will request a non-stop stream
-  
-Server accepts multiple client connections and serves each in turn in LIFO order.
 ### Using `TCPCam_client`
 The provided Linux client connects with credentials and dumps the payload to `stdout` or to a file. Usage:
 ```sh
