@@ -1,5 +1,5 @@
 # TCPCam: remote control your ESP32 camera
-FreeRTOS request-response IoT server, implementing multiple concurrent client connections, image streaming and on-demand image capture requests over TCP.
+This IoT application implements a FreeRTOS-based request-response TCP server with multiple concurrent client connections, image streaming and on-demand image capture requests over TCP.
 A simple Linux client is provided for testing purposes.
 ## Hardware requirements
 - ESP32-CAM board. 
