@@ -7,7 +7,7 @@ A simple Linux client is provided for testing purposes.
 - Wifi connection and (optionally) Internet
 - 5V or 3.3V power source (5V, if applicable for a board, works better with WiFi).
 ## Software prerequisites
-This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Integrated Development Environment.
+This project uses the [*ESP IDF*](https://github.com/espressif/esp-idf "ESP-IDF on Github") Software Development Kit.
 See the [official tutorial](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#installation "install and setup ESP IDF") for installation options.
 
 GCC or similar, and GNU Make or similar, are needed to build the included client.
@@ -55,8 +55,7 @@ All communications are unencrypted and use the same port.
 
 The server accepts multiple client connections and serves each in turn in LIFO order.
 ### Server request protocol
-A server request shall consist of PIN followed by COMMAND sent separately in this order. These two commands are required to initiate the connection. Neither command will be confirmed by server.
-If the initiation request is successful, a stream will start arriving on the same port.
+A server request shall consist of PIN followed by CMD, sent separately in this order. These two commands are required to initiate the connection. Neither command will be confirmed by server. If the initiation request is successful, a stream will start arriving on the same port.
 
 Description of initiation commands:
 1. PIN code as specified in the "TCP server settings > TCP pin/password" menu
